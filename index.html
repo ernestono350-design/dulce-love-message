@@ -182,12 +182,15 @@
         <div class="music-controls">
             <button class="music-btn" id="musicToggle">🎵 Pausar música</button>
         </div>
-        <p class="music-info">🎶 Self Aware - The Temper Trap 🎶</p>
+        <p class="music-info">🎶 Self Aware - Temper Trap 🎶</p>
     </div>
 
-    <!-- Audio element -->
-    <audio id="backgroundMusic" volume="0.5">
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    <!-- YouTube iframe for audio -->
+    <iframe id="ytplayer" style="display:none;" width="0" height="0" src="https://www.youtube.com/embed/mh4AQkw4Jjc?autoplay=1&controls=0&start=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+    <!-- Audio element as fallback -->
+    <audio id="backgroundMusic" volume="0.5" loop>
+        <source src="https://www.youtube.com/watch?v=mh4AQkw4Jjc" type="audio/mpeg">
         Tu navegador no soporta el elemento de audio.
     </audio>
 
@@ -217,33 +220,25 @@
         }
 
         // Music controls
-        const audio = document.getElementById('backgroundMusic');
         const musicToggle = document.getElementById('musicToggle');
-
-        // Set volume to medium (0.5)
-        audio.volume = 0.5;
-
-        // Try to play music automatically
-        audio.play().catch(function(error) {
-            console.log('Autoplay bloqueado. Haz clic en cualquier parte de la página para iniciar la música.');
-        });
+        const ytPlayer = document.getElementById('ytplayer');
+        let isPlaying = true;
 
         // Music toggle button
         musicToggle.addEventListener('click', function() {
-            if (audio.paused) {
-                audio.play();
+            isPlaying = !isPlaying;
+            if (isPlaying) {
+                ytPlayer.src = 'https://www.youtube.com/embed/mh4AQkw4Jjc?autoplay=1&controls=0';
                 musicToggle.textContent = '🎵 Pausar música';
             } else {
-                audio.pause();
+                ytPlayer.src = '';
                 musicToggle.textContent = '🎵 Reproducir música';
             }
         });
 
         // Allow music to play on first user interaction
         document.addEventListener('click', function() {
-            if (audio.paused) {
-                audio.play();
-            }
+            ytPlayer.src = 'https://www.youtube.com/embed/mh4AQkw4Jjc?autoplay=1&controls=0';
         }, { once: true });
     </script>
 </body>
