@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Message for Dulce 💕</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(135deg, #1a0033 0%, #2d0052 50%, #1a0033 100%);
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Starry background */
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        /* Hearts background */
+        .hearts-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            opacity: 0.15;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.15;
+            }
+            90% {
+                opacity: 0.15;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Message container */
+        .message-box {
+            position: relative;
+            z-index: 10;
+            background: rgba(255, 105, 180, 0.1);
+            border: 3px solid #ff69b4;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 30px rgba(255, 105, 180, 0.5);
+            max-width: 500px;
+        }
+
+        a {
+            display: inline-block;
+            font-size: 28px;
+            font-weight: bold;
+            color: #ff69b4;
+            text-decoration: none;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 10px rgba(255, 105, 180, 0.7);
+        }
+
+        a:hover {
+            color: #ff1493;
+            text-shadow: 0 0 20px rgba(255, 20, 147, 1);
+            transform: scale(1.1);
+        }
+
+        .hearts-emoji {
+            font-size: 32px;
+            margin: 0 10px;
+            animation: heartbeat 1.2s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.2); }
+            50% { transform: scale(1); }
+        }
+
+        h1 {
+            color: #ffb6d9;
+            font-size: 36px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(255, 105, 180, 0.7);
+        }
+
+        .subtitle {
+            color: #ff69b4;
+            font-size: 16px;
+            margin-top: 20px;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <!-- Starry sky -->
+    <div class="stars" id="starsContainer"></div>
+
+    <!-- Floating hearts -->
+    <div class="hearts-container" id="heartsContainer"></div>
+
+    <!-- Message -->
+    <div class="message-box">
+        <h1>✨ For You, Dulce ✨</h1>
+        <a href="#">
+            <span class="hearts-emoji">💕</span>
+            Dulce, you're my forever love!
+            <span class="hearts-emoji">💕</span>
+        </a>
+        <p class="subtitle">You make my world brighter every single day 🌹</p>
+    </div>
+
+    <script>
+        // Generate random stars
+        const starsContainer = document.getElementById('starsContainer');
+        for (let i = 0; i < 100; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            starsContainer.appendChild(star);
+        }
+
+        // Generate floating hearts
+        const heartsContainer = document.getElementById('heartsContainer');
+        const heartEmojis = ['💕', '💖', '💗', '💝', '🌹', '💓'];
+        for (let i = 0; i < 20; i++) {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.fontSize = (Math.random() * 30 + 20) + 'px';
+            heart.style.animationDelay = Math.random() * 6 + 's';
+            heartsContainer.appendChild(heart);
+        }
+    </script>
+</body>
+</html>
