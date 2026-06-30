@@ -131,6 +131,35 @@
             margin-top: 20px;
             opacity: 0.9;
         }
+
+        .music-info {
+            color: #ffb6d9;
+            font-size: 12px;
+            margin-top: 30px;
+            opacity: 0.7;
+        }
+
+        .music-controls {
+            margin-top: 20px;
+            z-index: 20;
+            position: relative;
+        }
+
+        .music-btn {
+            background: rgba(255, 105, 180, 0.3);
+            border: 2px solid #ff69b4;
+            color: #ff69b4;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .music-btn:hover {
+            background: rgba(255, 105, 180, 0.5);
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body>
@@ -149,7 +178,18 @@
             <span class="hearts-emoji">💕</span>
         </a>
         <p class="subtitle">Haces mi mundo brillante cada día 🌹</p>
+        
+        <div class="music-controls">
+            <button class="music-btn" id="musicToggle">🎵 Pausar música</button>
+        </div>
+        <p class="music-info">🎶 Self Aware - The Temper Trap 🎶</p>
     </div>
+
+    <!-- Audio element -->
+    <audio id="backgroundMusic" volume="0.5">
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
 
     <script>
         // Generate random stars
@@ -175,6 +215,36 @@
             heart.style.animationDelay = Math.random() * 6 + 's';
             heartsContainer.appendChild(heart);
         }
+
+        // Music controls
+        const audio = document.getElementById('backgroundMusic');
+        const musicToggle = document.getElementById('musicToggle');
+
+        // Set volume to medium (0.5)
+        audio.volume = 0.5;
+
+        // Try to play music automatically
+        audio.play().catch(function(error) {
+            console.log('Autoplay bloqueado. Haz clic en cualquier parte de la página para iniciar la música.');
+        });
+
+        // Music toggle button
+        musicToggle.addEventListener('click', function() {
+            if (audio.paused) {
+                audio.play();
+                musicToggle.textContent = '🎵 Pausar música';
+            } else {
+                audio.pause();
+                musicToggle.textContent = '🎵 Reproducir música';
+            }
+        });
+
+        // Allow music to play on first user interaction
+        document.addEventListener('click', function() {
+            if (audio.paused) {
+                audio.play();
+            }
+        }, { once: true });
     </script>
 </body>
 </html>
