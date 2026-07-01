@@ -159,13 +159,13 @@
         .message-box {
             position: relative;
             z-index: 10;
-            background: rgba(255, 105, 180, 0.08);
+            background: rgba(0, 0, 0, 0.5);
             border: 3px solid #ff69b4;
             border-radius: 20px;
             padding: 40px;
             text-align: center;
             backdrop-filter: blur(15px);
-            box-shadow: 0 0 50px rgba(255, 105, 180, 0.6), inset 0 0 20px rgba(255, 105, 180, 0.2);
+            box-shadow: 0 0 50px rgba(255, 105, 180, 0.8), inset 0 0 20px rgba(255, 105, 180, 0.3);
             max-width: 500px;
         }
 
@@ -173,16 +173,16 @@
             display: inline-block;
             font-size: 28px;
             font-weight: bold;
-            color: #ff69b4;
+            color: #ffff00;
             text-decoration: none;
             margin: 20px 0;
             transition: all 0.3s ease;
-            text-shadow: 0 0 10px rgba(255, 105, 180, 0.7);
+            text-shadow: 0 0 15px rgba(255, 255, 0, 1), 0 0 30px rgba(255, 105, 180, 0.8);
         }
 
         a:hover {
-            color: #ff1493;
-            text-shadow: 0 0 20px rgba(255, 20, 147, 1);
+            color: #ffffff;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 1), 0 0 40px rgba(255, 20, 147, 1);
             transform: scale(1.1);
         }
 
@@ -199,24 +199,29 @@
         }
 
         h1 {
-            color: #ffb6d9;
+            color: #ffff00;
             font-size: 36px;
             margin-bottom: 20px;
-            text-shadow: 0 0 10px rgba(255, 105, 180, 0.7);
+            text-shadow: 0 0 15px rgba(255, 255, 0, 1), 0 0 30px rgba(255, 105, 180, 0.8);
+            font-weight: bold;
         }
 
         .subtitle {
-            color: #ff69b4;
+            color: #ffffff;
             font-size: 16px;
             margin-top: 20px;
-            opacity: 0.9;
+            opacity: 1;
+            text-shadow: 0 0 10px rgba(255, 105, 180, 0.8);
+            font-weight: 600;
         }
 
         .music-info {
-            color: #ffb6d9;
+            color: #ffff00;
             font-size: 12px;
             margin-top: 30px;
-            opacity: 0.7;
+            opacity: 1;
+            text-shadow: 0 0 10px rgba(255, 255, 0, 0.8);
+            font-weight: 600;
         }
 
         .music-controls {
@@ -226,19 +231,22 @@
         }
 
         .music-btn {
-            background: rgba(255, 105, 180, 0.3);
-            border: 2px solid #ff69b4;
-            color: #ff69b4;
+            background: rgba(255, 105, 180, 0.4);
+            border: 2px solid #ffff00;
+            color: #ffff00;
             padding: 8px 16px;
             border-radius: 20px;
             cursor: pointer;
             font-size: 12px;
             transition: all 0.3s ease;
+            font-weight: bold;
+            text-shadow: 0 0 8px rgba(255, 255, 0, 0.8);
         }
 
         .music-btn:hover {
-            background: rgba(255, 105, 180, 0.5);
+            background: rgba(255, 105, 180, 0.6);
             transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 255, 0, 0.8);
         }
     </style>
 </head>
