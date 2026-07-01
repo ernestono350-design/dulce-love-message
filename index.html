@@ -73,7 +73,37 @@
             50% { opacity: 1; }
         }
 
-        /* Mega heart in center */
+        /* Shooting stars */
+        .shooting-stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 2;
+        }
+
+        .shooting-star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 10px 1px rgba(255, 255, 255, 0.8);
+            animation: shoot 2s ease-in infinite;
+        }
+
+        @keyframes shoot {
+            0% {
+                opacity: 1;
+                transform: translateX(0) translateY(0);
+            }
+            100% {
+                opacity: 0;
+                transform: translateX(300px) translateY(300px);
+            }
+        }
+
+        /* Mega heart in center - Rotated 90 degrees */
         .mega-heart {
             position: absolute;
             width: 300px;
@@ -81,7 +111,7 @@
             z-index: 3;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%) rotate(90deg);
             animation: heartbeat-mega 1.5s ease-in-out infinite;
             filter: drop-shadow(0 0 40px rgba(255, 20, 147, 0.8)) drop-shadow(0 0 80px rgba(138, 43, 226, 0.5));
         }
@@ -118,9 +148,9 @@
         }
 
         @keyframes heartbeat-mega {
-            0%, 100% { transform: translate(-50%, -50%) scale(1); }
-            25% { transform: translate(-50%, -50%) scale(1.1); }
-            50% { transform: translate(-50%, -50%) scale(1); }
+            0%, 100% { transform: translate(-50%, -50%) rotate(90deg) scale(1); }
+            25% { transform: translate(-50%, -50%) rotate(90deg) scale(1.1); }
+            50% { transform: translate(-50%, -50%) rotate(90deg) scale(1); }
         }
 
         /* Glowing particles around heart */
@@ -257,6 +287,9 @@
     <!-- Starry sky -->
     <div class="stars" id="starsContainer"></div>
 
+    <!-- Shooting stars -->
+    <div class="shooting-stars" id="shootingStarsContainer"></div>
+
     <!-- Mega heart in center -->
     <div class="mega-heart">
         <div class="heart-shape"></div>
@@ -310,6 +343,28 @@
             star.style.animationDelay = Math.random() * 3 + 's';
             starsContainer.appendChild(star);
         }
+
+        // Generate shooting stars
+        const shootingStarsContainer = document.getElementById('shootingStarsContainer');
+        function createShootingStar() {
+            const shootingStar = document.createElement('div');
+            shootingStar.className = 'shooting-star';
+            
+            const startX = Math.random() * 100;
+            const startY = Math.random() * 50;
+            
+            shootingStar.style.left = startX + '%';
+            shootingStar.style.top = startY + '%';
+            shootingStar.style.animationDuration = (1.5 + Math.random() * 1) + 's';
+            shootingStar.style.animationDelay = Math.random() * 0.5 + 's';
+            
+            shootingStarsContainer.appendChild(shootingStar);
+            
+            setTimeout(() => shootingStar.remove(), 3000);
+        }
+
+        // Create shooting stars every 1.5 seconds
+        setInterval(createShootingStar, 1500);
 
         // Generate particles around heart
         const particlesContainer = document.getElementById('particlesContainer');
