@@ -190,6 +190,40 @@
             }
         }
 
+        /* Floating bunnies */
+        .bunnies-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 2;
+        }
+
+        .bunny {
+            position: absolute;
+            font-size: 40px;
+            animation: float-bunny linear infinite;
+            opacity: 0.7;
+            filter: drop-shadow(0 0 10px rgba(255, 20, 147, 0.6));
+        }
+
+        @keyframes float-bunny {
+            0% {
+                transform: translateY(100vh) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
         /* Mega heart in center - Rotated 90 degrees */
         .mega-heart {
             position: absolute;
@@ -330,6 +364,7 @@
             opacity: 1;
             text-shadow: 0 0 10px rgba(255, 105, 180, 0.8);
             font-weight: 600;
+            line-height: 1.6;
         }
 
         .music-info {
@@ -385,6 +420,9 @@
     <!-- Shooting stars -->
     <div class="shooting-stars" id="shootingStarsContainer"></div>
 
+    <!-- Floating bunnies -->
+    <div class="bunnies-container" id="bunniesContainer"></div>
+
     <!-- Mega heart in center -->
     <div class="mega-heart">
         <div class="heart-shape"></div>
@@ -401,7 +439,7 @@
             ¡Eres la niña de mis ojos!
             <span class="hearts-emoji">💕</span>
         </a>
-        <p class="subtitle">Haces mi mundo brillante cada día 🌹</p>
+        <p class="subtitle">Ahora cada día siento que tengo una razón por la cual darlo todo 🌹</p>
         
         <div class="music-controls">
             <button class="music-btn" id="musicToggle">🎵 Pausar música</button>
@@ -460,6 +498,28 @@
 
         // Create shooting stars every 1.5 seconds
         setInterval(createShootingStar, 1500);
+
+        // Generate floating bunnies
+        const bunniesContainer = document.getElementById('bunniesContainer');
+        function createBunny() {
+            const bunny = document.createElement('div');
+            bunny.className = 'bunny';
+            bunny.textContent = '🐰';
+            
+            const startX = Math.random() * 100;
+            const duration = 8 + Math.random() * 6;
+            
+            bunny.style.left = startX + '%';
+            bunny.style.animationDuration = duration + 's';
+            bunny.style.animationDelay = Math.random() * 2 + 's';
+            
+            bunniesContainer.appendChild(bunny);
+            
+            setTimeout(() => bunny.remove(), (duration + 2) * 1000);
+        }
+
+        // Create bunnies every 2 seconds
+        setInterval(createBunny, 2000);
 
         // Generate particles around heart
         const particlesContainer = document.getElementById('particlesContainer');
