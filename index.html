@@ -190,7 +190,7 @@
             }
         }
 
-        /* Floating bunnies */
+        /* Floating bunnies with hearts */
         .bunnies-container {
             position: absolute;
             width: 100%;
@@ -199,12 +199,38 @@
             z-index: 2;
         }
 
-        .bunny {
+        .bunny-group {
             position: absolute;
-            font-size: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
             animation: float-bunny linear infinite;
-            opacity: 0.7;
-            filter: drop-shadow(0 0 10px rgba(255, 20, 147, 0.6));
+            opacity: 0.8;
+        }
+
+        .bunny-smile {
+            font-size: 45px;
+            animation: smile-bounce 1.2s ease-in-out infinite;
+            filter: drop-shadow(0 0 8px rgba(255, 105, 180, 0.6));
+        }
+
+        .heart-embrace {
+            font-size: 35px;
+            animation: heart-pulse 1.5s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px rgba(255, 20, 147, 0.8));
+        }
+
+        @keyframes smile-bounce {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.1) rotate(-5deg); }
+            50% { transform: scale(1.05) rotate(0deg); }
+            75% { transform: scale(1.1) rotate(5deg); }
+        }
+
+        @keyframes heart-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
         }
 
         @keyframes float-bunny {
@@ -213,10 +239,10 @@
                 opacity: 0;
             }
             10% {
-                opacity: 0.7;
+                opacity: 0.8;
             }
             90% {
-                opacity: 0.7;
+                opacity: 0.8;
             }
             100% {
                 transform: translateY(-100vh) translateX(100px) rotate(360deg);
@@ -420,7 +446,7 @@
     <!-- Shooting stars -->
     <div class="shooting-stars" id="shootingStarsContainer"></div>
 
-    <!-- Floating bunnies -->
+    <!-- Floating bunnies with hearts -->
     <div class="bunnies-container" id="bunniesContainer"></div>
 
     <!-- Mega heart in center -->
@@ -499,27 +525,39 @@
         // Create shooting stars every 1.5 seconds
         setInterval(createShootingStar, 1500);
 
-        // Generate floating bunnies
+        // Generate floating bunnies with hearts
         const bunniesContainer = document.getElementById('bunniesContainer');
-        function createBunny() {
-            const bunny = document.createElement('div');
-            bunny.className = 'bunny';
+        function createBunnyWithHeart() {
+            const bunnyGroup = document.createElement('div');
+            bunnyGroup.className = 'bunny-group';
+            
+            // Bunny emoji with smile
+            const bunny = document.createElement('span');
+            bunny.className = 'bunny-smile';
             bunny.textContent = '🐰';
+            
+            // Heart emoji
+            const heart = document.createElement('span');
+            heart.className = 'heart-embrace';
+            heart.textContent = '💕';
+            
+            bunnyGroup.appendChild(bunny);
+            bunnyGroup.appendChild(heart);
             
             const startX = Math.random() * 100;
             const duration = 8 + Math.random() * 6;
             
-            bunny.style.left = startX + '%';
-            bunny.style.animationDuration = duration + 's';
-            bunny.style.animationDelay = Math.random() * 2 + 's';
+            bunnyGroup.style.left = startX + '%';
+            bunnyGroup.style.animationDuration = duration + 's';
+            bunnyGroup.style.animationDelay = Math.random() * 2 + 's';
             
-            bunniesContainer.appendChild(bunny);
+            bunniesContainer.appendChild(bunnyGroup);
             
-            setTimeout(() => bunny.remove(), (duration + 2) * 1000);
+            setTimeout(() => bunnyGroup.remove(), (duration + 2) * 1000);
         }
 
-        // Create bunnies every 2 seconds
-        setInterval(createBunny, 2000);
+        // Create bunnies with hearts every 2 seconds
+        setInterval(createBunnyWithHeart, 2000);
 
         // Generate particles around heart
         const particlesContainer = document.getElementById('particlesContainer');
