@@ -37,8 +37,8 @@
             z-index: 1;
         }
 
-        /* Rotating galaxies container */
-        .rotating-galaxies {
+        /* Milky waves container */
+        .milky-waves-container {
             position: absolute;
             width: 100%;
             height: 100%;
@@ -46,55 +46,81 @@
             overflow: hidden;
         }
 
-        .galaxy-spiral {
+        .milky-wave {
             position: absolute;
-            border-radius: 50%;
-            animation: rotate-galaxy 20s linear infinite;
-            opacity: 0.6;
+            opacity: 0.4;
         }
 
-        .galaxy-1 {
-            width: 400px;
-            height: 400px;
-            top: -100px;
-            left: -100px;
-            background: radial-gradient(ellipse at 30% 30%, rgba(138, 43, 226, 0.4) 0%, rgba(75, 0, 130, 0.2) 50%, transparent 100%);
-            animation: rotate-galaxy 25s linear infinite;
+        .wave-1 {
+            width: 150%;
+            height: 300px;
+            top: 10%;
+            left: -25%;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(147, 112, 219, 0.3) 25%, 
+                rgba(255, 182, 193, 0.4) 50%, 
+                rgba(147, 112, 219, 0.3) 75%, 
+                transparent 100%);
+            filter: blur(40px);
+            animation: wave-flow 8s ease-in-out infinite;
+            transform: skewY(-5deg);
         }
 
-        .galaxy-2 {
-            width: 500px;
-            height: 500px;
-            bottom: -150px;
-            right: -150px;
-            background: radial-gradient(ellipse at 70% 70%, rgba(255, 20, 147, 0.3) 0%, rgba(220, 20, 60, 0.1) 50%, transparent 100%);
-            animation: rotate-galaxy 30s linear infinite reverse;
-        }
-
-        .galaxy-3 {
-            width: 350px;
+        .wave-2 {
+            width: 150%;
             height: 350px;
-            top: 50%;
-            right: -80px;
-            background: radial-gradient(ellipse at 50% 50%, rgba(138, 43, 226, 0.3) 0%, rgba(75, 0, 130, 0.15) 50%, transparent 100%);
-            animation: rotate-galaxy 28s linear infinite;
+            top: 30%;
+            left: -25%;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(255, 20, 147, 0.25) 25%, 
+                rgba(138, 43, 226, 0.35) 50%, 
+                rgba(255, 20, 147, 0.25) 75%, 
+                transparent 100%);
+            filter: blur(50px);
+            animation: wave-flow 10s ease-in-out infinite reverse;
+            transform: skewY(5deg);
         }
 
-        .galaxy-4 {
-            width: 450px;
-            height: 450px;
-            bottom: 10%;
-            left: -120px;
-            background: radial-gradient(ellipse at 40% 60%, rgba(255, 20, 147, 0.25) 0%, rgba(220, 20, 60, 0.1) 50%, transparent 100%);
-            animation: rotate-galaxy 32s linear infinite reverse;
+        .wave-3 {
+            width: 150%;
+            height: 280px;
+            top: 55%;
+            left: -25%;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(75, 0, 130, 0.3) 25%, 
+                rgba(255, 105, 180, 0.4) 50%, 
+                rgba(75, 0, 130, 0.3) 75%, 
+                transparent 100%);
+            filter: blur(45px);
+            animation: wave-flow 9s ease-in-out infinite;
+            transform: skewY(-4deg);
         }
 
-        @keyframes rotate-galaxy {
-            0% {
-                transform: rotate(0deg);
+        .wave-4 {
+            width: 150%;
+            height: 320px;
+            top: 75%;
+            left: -25%;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(138, 43, 226, 0.25) 25%, 
+                rgba(220, 20, 60, 0.35) 50%, 
+                rgba(138, 43, 226, 0.25) 75%, 
+                transparent 100%);
+            filter: blur(55px);
+            animation: wave-flow 11s ease-in-out infinite reverse;
+            transform: skewY(4deg);
+        }
+
+        @keyframes wave-flow {
+            0%, 100% {
+                transform: translateX(0) skewY(inherit);
             }
-            100% {
-                transform: rotate(360deg);
+            50% {
+                transform: translateX(50px) skewY(inherit);
             }
         }
 
@@ -345,12 +371,12 @@
     <!-- Galaxy background -->
     <div class="galaxy-bg"></div>
 
-    <!-- Rotating galaxies -->
-    <div class="rotating-galaxies">
-        <div class="galaxy-spiral galaxy-1"></div>
-        <div class="galaxy-spiral galaxy-2"></div>
-        <div class="galaxy-spiral galaxy-3"></div>
-        <div class="galaxy-spiral galaxy-4"></div>
+    <!-- Milky waves -->
+    <div class="milky-waves-container">
+        <div class="milky-wave wave-1"></div>
+        <div class="milky-wave wave-2"></div>
+        <div class="milky-wave wave-3"></div>
+        <div class="milky-wave wave-4"></div>
     </div>
 
     <!-- Starry sky -->
